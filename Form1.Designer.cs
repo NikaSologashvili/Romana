@@ -4,12 +4,8 @@
     {
    
         private System.ComponentModel.IContainer components = null;
-        private TextBox firstValueTextBox;
-        private TextBox secondValueTextBox;
-        private Button addButton;
-        private Button subtractButton;
-        private Label resultLabel;
-        private TableLayoutPanel calculatorLayout;
+        private Button button1;
+        private Button button2;
 
         protected override void Dispose(bool disposing)
         {
@@ -20,70 +16,35 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
 
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            firstValueTextBox = new TextBox();
-            secondValueTextBox = new TextBox();
-            addButton = new Button();
-            subtractButton = new Button();
-            resultLabel = new Label();
-            calculatorLayout = new TableLayoutPanel();
+            button1 = new Button();
+            button2 = new Button();
 
-            firstValueTextBox.Dock = DockStyle.Fill;
-            firstValueTextBox.Name = "firstValueTextBox";
-            firstValueTextBox.TabIndex = 0;
+            button1.Location = new Point(50, 50);
+            button1.Name = "button1";
+            button1.Size = new Size(120, 40);
+            button1.TabIndex = 0;
+            button1.Text = "Button 1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
 
-            secondValueTextBox.Dock = DockStyle.Fill;
-            secondValueTextBox.Name = "secondValueTextBox";
-            secondValueTextBox.TabIndex = 1;
-
-            addButton.AutoSize = true;
-            addButton.Name = "addButton";
-            addButton.Text = "Add";
-            addButton.UseVisualStyleBackColor = true;
-            addButton.Tag = "+";
-            addButton.Click += calculateButton_Click;
-
-            subtractButton.AutoSize = true;
-            subtractButton.Name = "subtractButton";
-            subtractButton.Text = "Subtract";
-            subtractButton.UseVisualStyleBackColor = true;
-            subtractButton.Tag = "-";
-            subtractButton.Click += calculateButton_Click;
-
-            resultLabel.AutoSize = true;
-            resultLabel.Name = "resultLabel";
-            resultLabel.Text = "Result:";
-
-            calculatorLayout.AutoSize = true;
-            calculatorLayout.ColumnCount = 2;
-            calculatorLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-            calculatorLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            calculatorLayout.Location = new Point(30, 30);
-            calculatorLayout.Padding = new Padding(12);
-            calculatorLayout.RowCount = 4;
-            calculatorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            calculatorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            calculatorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            calculatorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            calculatorLayout.Controls.Add(new Label { AutoSize = true, Text = "First value:" }, 0, 0);
-            calculatorLayout.Controls.Add(firstValueTextBox, 1, 0);
-            calculatorLayout.Controls.Add(new Label { AutoSize = true, Text = "Second value:" }, 0, 1);
-            calculatorLayout.Controls.Add(secondValueTextBox, 1, 1);
-            calculatorLayout.Controls.Add(addButton, 0, 2);
-            calculatorLayout.Controls.Add(subtractButton, 1, 2);
-            calculatorLayout.Controls.Add(resultLabel, 0, 3);
-            calculatorLayout.SetColumnSpan(resultLabel, 2);
+            button2.Location = new Point(190, 50);
+            button2.Name = "button2";
+            button2.Size = new Size(120, 40);
+            button2.TabIndex = 1;
+            button2.Text = "Button 2";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
 
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(calculatorLayout);
-            Text = "Calculator v3";
+            Controls.Add(button1);
+            Controls.Add(button2);
+            Text = "Button Popup v4";
         }
 
-        #endregion
     }
 }

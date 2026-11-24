@@ -8,34 +8,19 @@ namespace WinFormsApp1
         }
 
 
-        private void calculateButton_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (sender is not Button button || !TryGetInputValues(out var firstValue, out var secondValue))
-            {
-                return;
-            }
-
-            var result = button.Tag?.ToString() switch
-            {
-                "+" => firstValue + secondValue,
-                "-" => firstValue - secondValue,
-                _ => throw new InvalidOperationException("Unknown calculator operation.")
-            };
-
-            resultLabel.Text = $"Result: {result}";
+            ShowButtonPopup("საკითხი 1");
         }
 
-        private bool TryGetInputValues(out decimal firstValue, out decimal secondValue)
+        private void button2_Click(object sender, EventArgs e)
         {
-            var firstValueIsValid = decimal.TryParse(firstValueTextBox.Text, out firstValue);
-            var secondValueIsValid = decimal.TryParse(secondValueTextBox.Text, out secondValue);
-            if (!firstValueIsValid || !secondValueIsValid)
-            {
-                MessageBox.Show("Enter a valid number in both fields.", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            ShowButtonPopup("საკითხი 2");
+        }
 
-            return true;
+        private void ShowButtonPopup(string title)
+        {
+            MessageBox.Show(title, title);
         }
     }
 }
