@@ -7,17 +7,45 @@ namespace WinFormsApp1
             InitializeComponent();
         }
 
-        private void show_button_Click(object sender, EventArgs e)
+
+        //საკითხი 1
+        private void multiplyButton_Click(object sender, EventArgs e)
         {
-            BackColor = Color.Aqua;
-            MessageBox.Show("Button 1 was clicked!", "Button 1");
+            if (TryGetInputValues(out var firstValue, out var secondValue))
+            {
+                resultLabel.Text = $"Result: {firstValue * secondValue}";
+            }
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
+        //საკითხი 2
+        private void divideButton_Click(object sender, EventArgs e)
         {
-            BackColor = Color.LightBlue;
-            MessageBox.Show("Button 2 was clicked!", "Button 2");
+            if (!TryGetInputValues(out var firstValue, out var secondValue))
+            {
+                return;
+            }
+
+            if (secondValue == 0)
+            {
+                MessageBox.Show("The second value cannot be zero when dividing.", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            resultLabel.Text = $"Result: {firstValue / secondValue}";
+        }
+
+        private bool TryGetInputValues(out decimal firstValue, out decimal secondValue)
+        {
+            var firstValueIsValid = decimal.TryParse(firstValueTextBox.Text, out firstValue);
+            var secondValueIsValid = decimal.TryParse(secondValueTextBox.Text, out secondValue);
+            if (!firstValueIsValid || !secondValueIsValid)
+            {
+                MessageBox.Show("Enter a valid number in both fields.", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
         }
     }
 }
