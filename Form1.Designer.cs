@@ -6,9 +6,10 @@
         private System.ComponentModel.IContainer components = null;
         private TextBox firstValueTextBox;
         private TextBox secondValueTextBox;
-        private Button multiplyButton;
-        private Button divideButton;
+        private Button addButton;
+        private Button subtractButton;
         private Label resultLabel;
+        private TableLayoutPanel calculatorLayout;
 
         protected override void Dispose(bool disposing)
         {
@@ -26,61 +27,61 @@
             components = new System.ComponentModel.Container();
             firstValueTextBox = new TextBox();
             secondValueTextBox = new TextBox();
-            multiplyButton = new Button();
-            divideButton = new Button();
+            addButton = new Button();
+            subtractButton = new Button();
             resultLabel = new Label();
+            calculatorLayout = new TableLayoutPanel();
 
-            var firstValueLabel = new Label();
-            firstValueLabel.AutoSize = true;
-            firstValueLabel.Location = new Point(50, 53);
-            firstValueLabel.Text = "First value:";
-
-            firstValueTextBox.Location = new Point(150, 50);
+            firstValueTextBox.Dock = DockStyle.Fill;
             firstValueTextBox.Name = "firstValueTextBox";
-            firstValueTextBox.Size = new Size(180, 23);
             firstValueTextBox.TabIndex = 0;
 
-            var secondValueLabel = new Label();
-            secondValueLabel.AutoSize = true;
-            secondValueLabel.Location = new Point(50, 93);
-            secondValueLabel.Text = "Second value:";
-
-            secondValueTextBox.Location = new Point(150, 90);
+            secondValueTextBox.Dock = DockStyle.Fill;
             secondValueTextBox.Name = "secondValueTextBox";
-            secondValueTextBox.Size = new Size(180, 23);
             secondValueTextBox.TabIndex = 1;
 
-            multiplyButton.Location = new Point(50, 135);
-            multiplyButton.Name = "multiplyButton";
-            multiplyButton.Size = new Size(120, 40);
-            multiplyButton.TabIndex = 2;
-            multiplyButton.Text = "Multiply";
-            multiplyButton.UseVisualStyleBackColor = true;
-            multiplyButton.Click += multiplyButton_Click;
+            addButton.AutoSize = true;
+            addButton.Name = "addButton";
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
+            addButton.Tag = "+";
+            addButton.Click += calculateButton_Click;
 
-            divideButton.Location = new Point(190, 135);
-            divideButton.Name = "divideButton";
-            divideButton.Size = new Size(120, 40);
-            divideButton.TabIndex = 3;
-            divideButton.Text = "Divide";
-            divideButton.UseVisualStyleBackColor = true;
-            divideButton.Click += divideButton_Click;
+            subtractButton.AutoSize = true;
+            subtractButton.Name = "subtractButton";
+            subtractButton.Text = "Subtract";
+            subtractButton.UseVisualStyleBackColor = true;
+            subtractButton.Tag = "-";
+            subtractButton.Click += calculateButton_Click;
 
             resultLabel.AutoSize = true;
-            resultLabel.Location = new Point(50, 195);
             resultLabel.Name = "resultLabel";
             resultLabel.Text = "Result:";
 
+            calculatorLayout.AutoSize = true;
+            calculatorLayout.ColumnCount = 2;
+            calculatorLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            calculatorLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            calculatorLayout.Location = new Point(30, 30);
+            calculatorLayout.Padding = new Padding(12);
+            calculatorLayout.RowCount = 4;
+            calculatorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            calculatorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            calculatorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            calculatorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            calculatorLayout.Controls.Add(new Label { AutoSize = true, Text = "First value:" }, 0, 0);
+            calculatorLayout.Controls.Add(firstValueTextBox, 1, 0);
+            calculatorLayout.Controls.Add(new Label { AutoSize = true, Text = "Second value:" }, 0, 1);
+            calculatorLayout.Controls.Add(secondValueTextBox, 1, 1);
+            calculatorLayout.Controls.Add(addButton, 0, 2);
+            calculatorLayout.Controls.Add(subtractButton, 1, 2);
+            calculatorLayout.Controls.Add(resultLabel, 0, 3);
+            calculatorLayout.SetColumnSpan(resultLabel, 2);
+
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(firstValueLabel);
-            Controls.Add(firstValueTextBox);
-            Controls.Add(secondValueLabel);
-            Controls.Add(secondValueTextBox);
-            Controls.Add(multiplyButton);
-            Controls.Add(divideButton);
-            Controls.Add(resultLabel);
-            Text = "Calculator";
+            Controls.Add(calculatorLayout);
+            Text = "Calculator v3";
         }
 
         #endregion

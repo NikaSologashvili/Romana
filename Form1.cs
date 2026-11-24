@@ -8,31 +8,21 @@ namespace WinFormsApp1
         }
 
 
-        //საკითხი 1
-        private void multiplyButton_Click(object sender, EventArgs e)
+        private void calculateButton_Click(object sender, EventArgs e)
         {
-            if (TryGetInputValues(out var firstValue, out var secondValue))
-            {
-                resultLabel.Text = $"Result: {firstValue * secondValue}";
-            }
-        }
-
-
-        //საკითხი 2
-        private void divideButton_Click(object sender, EventArgs e)
-        {
-            if (!TryGetInputValues(out var firstValue, out var secondValue))
+            if (sender is not Button button || !TryGetInputValues(out var firstValue, out var secondValue))
             {
                 return;
             }
 
-            if (secondValue == 0)
+            var result = button.Tag?.ToString() switch
             {
-                MessageBox.Show("The second value cannot be zero when dividing.", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                "+" => firstValue + secondValue,
+                "-" => firstValue - secondValue,
+                _ => throw new InvalidOperationException("Unknown calculator operation.")
+            };
 
-            resultLabel.Text = $"Result: {firstValue / secondValue}";
+            resultLabel.Text = $"Result: {result}";
         }
 
         private bool TryGetInputValues(out decimal firstValue, out decimal secondValue)
